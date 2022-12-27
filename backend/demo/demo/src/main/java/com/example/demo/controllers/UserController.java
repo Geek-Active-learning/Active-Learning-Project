@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,12 +35,12 @@ public class UserController {
     }
 
     @PutMapping
-    public Optional<User> updateUser(@RequestBody User user, @PathVariable Long id){
+    public ResponseEntity<String> updateUser(@RequestBody User user, @PathVariable Long id){
         return this.userService.updateUser(user,id);
     }
 
     @DeleteMapping
-    public void deleteUser(@PathVariable Long userId){
-        this.userService.deleteUser(userId);
+    public ResponseEntity<String> deleteUser(@PathVariable Long userId){
+        return this.userService.deleteUser(userId);
     }
 }

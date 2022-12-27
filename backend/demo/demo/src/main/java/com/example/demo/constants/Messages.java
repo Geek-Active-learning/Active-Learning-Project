@@ -7,6 +7,7 @@ public class Messages {
 
     public static final String EMAIL_ALREADY_EXIST = "Email %s already exist, please try to login or reset password";
     public static final String GITHUB_USERNAME_ALREADY_EXIST = "Github username %s already exist";
+    public static final String PHONE_NUMBER_ALREADY_EXIST = "Phone number %s already exist";
 
     public static final String USER_DELETED_SUCCESSFUL_MESSAGE = "The following user has been deleted %s";
     public static final String USER_CREATED_SUCCESS_MESSAGE = "The following user has been added %s";

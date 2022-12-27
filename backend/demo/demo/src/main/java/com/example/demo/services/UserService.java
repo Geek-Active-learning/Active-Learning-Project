@@ -39,10 +39,10 @@ public class UserService {
         return user;
     }
 
-    public void createNewUser( User user){
+    public ResponseEntity<String> createNewUser( User user){
         if(isPhoneNumberInUse(user.getPhoneNumber())){
             throw new ResponseStatusException(
-                    HttpStatus.IM_USED, String.format(Messages.USER_NOT_FOUND_ERROR_MESSAGE, user.getPhoneNumber()));
+                    HttpStatus.IM_USED, String.format(Messages.PHONE_NUMBER_ALREADY_EXIST, user.getPhoneNumber()));
         }
 
         if(isEmailInUse(user.getEmail())){
@@ -54,8 +54,8 @@ public class UserService {
             throw new ResponseStatusException(
                     HttpStatus.IM_USED, String.format(Messages.GITHUB_USERNAME_ALREADY_EXIST, user.getGithubUsername()));
         }
-
         userRepository.save(buildUser(user));
+        return ResponseEntity.status(HttpStatus.OK).body(String.format(Messages.USER_CREATED_SUCCESS_MESSAGE, user.toString()));
     }
     public  User buildUser(@NonNull User user){
         return User.builder()
@@ -71,33 +71,30 @@ public class UserService {
     }
 
     @Transactional
-    public Optional<User> updateUser(User user,Long userId){
+    public ResponseEntity<String> updateUser(User user,Long userId){
         //TODO
         return null;
     }
 
     public ResponseEntity<String> deleteUser(@NonNull Long userId){
         Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()) {
-            userRepository.deleteById(userId);
-            return ResponseEntity.status(HttpStatus.OK).body(String.format(Messages.USER_DELETED_SUCCESSFUL_MESSAGE, user.toString()));
+        if (!user.isPresent()) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_GATEWAY, String.format(Messages.USER_NOT_DELETED_ERROR_MESSAGE, userId));
         }
-        throw new ResponseStatusException(
-                HttpStatus.BAD_GATEWAY, String.format(Messages.USER_NOT_DELETED_ERROR_MESSAGE, userId));
+        userRepository.deleteById(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(String.format(Messages.USER_DELETED_SUCCESSFUL_MESSAGE, user.toString()));
     }
 
     public boolean isEmailInUse(@NonNull String email){
-        Optional<User> user = userRepository.findByEmail(email);
-        return user.isPresent();
+        return userRepository.findByEmail(email).isPresent();
     }
 
     public boolean isPhoneNumberInUse(@NonNull String phoneNumber){
-        Optional<User> user = userRepository.findByPhoneNumber(phoneNumber);
-        return user.isPresent();
+        return userRepository.findByPhoneNumber(phoneNumber).isPresent();
     }
 
     public boolean isGithubUsernameInUse(@NonNull String githubUsername){
-        Optional<User> user = userRepository.findByGithubUsername(githubUsername);
-        return user.isPresent();
+        return userRepository.findByGithubUsername(githubUsername).isPresent();
     }
 }
