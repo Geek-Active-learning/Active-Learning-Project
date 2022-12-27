@@ -30,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping
-    public void createNewUser(@RequestBody User user){
-        this.userService.createNewUser(user);
+    public ResponseEntity<String> createNewUser(@RequestBody User user){
+        return this.userService.createNewUser(user);
     }
 
     @PutMapping
