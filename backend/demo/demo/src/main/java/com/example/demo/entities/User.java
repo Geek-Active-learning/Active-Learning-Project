@@ -38,8 +38,7 @@ public class User {
 
     private Date dob;
 
-    @Transient
-    private  String username;
+    private  String githubUsername;
 
     private String email;
 

@@ -29,13 +29,13 @@ public class UserController {
     }
 
     @PostMapping
-    public Optional<User> createNewUser(@PathVariable Long userId){
-        return this.userService.getUserById(userId);
+    public void createNewUser(@RequestBody User user){
+        this.userService.createNewUser(user);
     }
 
     @PutMapping
     public Optional<User> updateUser(@RequestBody User user, @PathVariable Long id){
-        return this.userService.updateUser();
+        return this.userService.updateUser(user,id);
     }
 
     @DeleteMapping

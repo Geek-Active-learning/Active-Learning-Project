@@ -32,7 +32,7 @@ public class UserService {
     public Optional<User> getUserById(@NonNull Long userId){
         Optional<User>  user =userRepository.findById(userId);
 
-        if(user.isEmpty()){
+        if(user.isPresent()){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, String.format(Messages.USER_NOT_FOUND_ERROR_MESSAGE, userId));
         }
@@ -41,14 +41,21 @@ public class UserService {
 
     public void createNewUser( User user){
         if(isPhoneNumberInUse(user.getPhoneNumber())){
-            throw new IllegalArgumentException("Phone number already exists");
+            throw new ResponseStatusException(
+                    HttpStatus.IM_USED, String.format(Messages.USER_NOT_FOUND_ERROR_MESSAGE, user.getPhoneNumber()));
         }
 
         if(isEmailInUse(user.getEmail())){
-            throw new IllegalArgumentException("Email already exists");
+            throw new ResponseStatusException(
+                    HttpStatus.IM_USED, String.format(Messages.EMAIL_ALREADY_EXIST, user.getEmail()));
         }
-     User user1 = buildUser(user);
-        userRepository.save(user1);
+
+        if(isGithubUsernameInUse(user.getGithubUsername())){
+            throw new ResponseStatusException(
+                    HttpStatus.IM_USED, String.format(Messages.GITHUB_USERNAME_ALREADY_EXIST, user.getGithubUsername()));
+        }
+
+        userRepository.save(buildUser(user));
     }
     public  User buildUser(@NonNull User user){
         return User.builder()
@@ -60,11 +67,12 @@ public class UserService {
                 .stream(user.getStream())
                 .surname(user.getSurname())
                 .startDate(user.getStartDate())
-                .username(user.getName()+" "+user.getSurname()).build();
+                .githubUsername(user.getGithubUsername()).build();
     }
 
     @Transactional
-    public Optional<User> updateUser(){
+    public Optional<User> updateUser(User user,Long userId){
+        //TODO
         return null;
     }
 
@@ -85,6 +93,11 @@ public class UserService {
 
     public boolean isPhoneNumberInUse(@NonNull String phoneNumber){
         Optional<User> user = userRepository.findByPhoneNumber(phoneNumber);
+        return user.isPresent();
+    }
+
+    public boolean isGithubUsernameInUse(@NonNull String githubUsername){
+        Optional<User> user = userRepository.findByGithubUsername(githubUsername);
         return user.isPresent();
     }
 }
