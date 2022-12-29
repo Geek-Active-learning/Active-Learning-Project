@@ -10,8 +10,8 @@ import lombok.*;
 
 /** Represents a single stream */
 
-@Entity(name = "roles_table")
-@Table(appliesTo = "roles_table")
+@Entity(name = "streams_table")
+@Table(appliesTo = "streams_table")
 @Builder
 @Getter
 @Setter

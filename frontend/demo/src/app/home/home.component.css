@@ -1,0 +1,27 @@
+.example-container {
+    margin:0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .mat-sidenav {
+    width: 250px;
+    background-color:#0f0;
+  }
+  
+  .sidenav-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  li a{
+    text-decoration: none;
+    font-size: xx-large;
+
+  }
+
+  ul {
+    list-style-type: none;
+}

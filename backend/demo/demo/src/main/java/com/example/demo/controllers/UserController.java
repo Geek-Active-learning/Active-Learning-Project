@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
 @RestController
 @RequestMapping("/api/v1/users/")
 public class UserController {
@@ -22,6 +23,11 @@ public class UserController {
     @GetMapping
     public List<User> getAllUsers(){
         return this.userService.getUsers();
+    }
+
+    @PostMapping("/authenticate")
+    public User authenticate(@RequestBody String email, @RequestBody String password){
+        return this.userService.authenticate(email,password);
     }
 
     @GetMapping("/user/{userId}")

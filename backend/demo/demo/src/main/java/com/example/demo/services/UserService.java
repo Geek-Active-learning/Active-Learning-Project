@@ -29,6 +29,25 @@ public class UserService {
         return  userRepository.findAll();
     }
 
+    public User authenticate(String email,String password){
+        if(email == null){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, String.format(Messages.EMAIL_IS_EMPTY));
+        }
+
+        if(password == null){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, String.format(Messages.PASSWORD_IS_EMPTY));
+        }
+
+        if(!isEmailInUse(email)){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, String.format(Messages.EMAIL_DOES_NOT_EXIST));
+        }
+
+        return  null;
+    }
+
     public Optional<User> getUserById(@NonNull Long userId){
         Optional<User>  user =userRepository.findById(userId);
 

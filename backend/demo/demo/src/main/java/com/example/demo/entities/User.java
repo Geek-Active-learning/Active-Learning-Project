@@ -44,7 +44,7 @@ public class User {
 
     private String phoneNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_streams_table",
             joinColumns = @JoinColumn(
@@ -55,6 +55,13 @@ public class User {
 
     private Date startDate;
 
-    private Collection<Roles> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles_table",
+            joinColumns = @JoinColumn(
+                    name = "users-table", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "roles_table", referencedColumnName = "id"))
+    private Roles roles;
 
 }
