@@ -5,7 +5,6 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "../../../../environment";
 
-import { Alert, AlertType } from '../../models';
 import {User} from "../../models";
 
 

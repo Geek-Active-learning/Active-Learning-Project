@@ -1,0 +1,24 @@
+
+ .card{
+
+    height: 100%;
+ }
+
+ .card-body{
+    padding: 5em;
+}
+.btn{
+    float: right;
+}
+
+  @media screen and (max-width: 600px) {
+
+    .card-body{
+        padding: 0em;
+    }
+    .btn{
+        float: none;
+        width: 100%;
+    }
+  }
+  
