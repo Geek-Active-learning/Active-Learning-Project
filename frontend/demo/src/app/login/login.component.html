@@ -3,7 +3,7 @@
     <div class="col-md-6 content">
       <img src="../../assets/images/online.jpg" class="card-img" alt="online learning image" />
     </div>
-    <div class="col-md-6 form-cardc">
+    <div class="col-md-6 form-card d-flex flex-column">
       <div class="card-body">
         <h4 class="card-header">Login</h4>
         <form class="form-horizontal" role="form" [formGroup]="loginForm" (submit)="onSubmit()">
@@ -54,9 +54,7 @@
           </div>
         </form>
       </div>
-      <div class="card-footer">
-        @2022 All rights reserved
-      </div>
+      <plt-footer></plt-footer>
     </div>
   </div>
 </div>

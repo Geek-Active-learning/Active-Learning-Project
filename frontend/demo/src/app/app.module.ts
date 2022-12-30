@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {RegisterComponent} from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BoardComponent } from './users/shared/board/board.component';
+import { ViewUsersComponent } from './users/shared/view-users/view-users.component';
+import { CardComponent } from './users/shared/board/card/card.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    BoardComponent,
+    ViewUsersComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

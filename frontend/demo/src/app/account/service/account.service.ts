@@ -37,6 +37,7 @@ export class AccountService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("user", JSON.stringify(user));
           this.userSubject.next(user);
+          
           return user;
         })
       );
@@ -50,7 +51,8 @@ export class AccountService {
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/users/register`, user);
+    console.log("i AM INSIDE REGISTER"+user)
+    return this.http.post(`${environment.apiUrl}/register`, user);
   }
 
   getAll() {

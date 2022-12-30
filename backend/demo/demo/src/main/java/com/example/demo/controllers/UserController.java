@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
 @RestController
-@RequestMapping("/api/v1/users/")
+@RequestMapping("/api/v1/users")
 public class UserController {
     private final UserService userService;
 
@@ -26,8 +26,8 @@ public class UserController {
     }
 
     @PostMapping("/authenticate")
-    public User authenticate(@RequestBody String email, @RequestBody String password){
-        return this.userService.authenticate(email,password);
+    public  Optional<User>  authenticate(@RequestBody User user){
+        return this.userService.authenticate(user);
     }
 
     @GetMapping("/user/{userId}")
@@ -45,7 +45,7 @@ public class UserController {
         return this.userService.updateUser(user,id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/user/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId){
         return this.userService.deleteUser(userId);
     }

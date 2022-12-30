@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { first } from "rxjs/operators";
 
 import { AccountService, AlertService } from '../account/service';
-
+import { User } from "../models";
 
 
 @Component({
@@ -58,15 +58,20 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+
+    
+
     this.loading = true;
     this.accountService
       .login(this.f["email"].value, this.f["password"].value)
       .pipe(first())
       .subscribe(
         data => {
+          console.log("I am an data : " + data);
           this.router.navigate([this.returnUrl]);
         },
         error => {
+          console.log("I am an error : " + error);
           this.alertService.error(error);
           this.loading = false;
         }

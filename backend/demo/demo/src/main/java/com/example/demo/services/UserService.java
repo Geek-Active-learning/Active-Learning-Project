@@ -29,23 +29,27 @@ public class UserService {
         return  userRepository.findAll();
     }
 
-    public User authenticate(String email,String password){
-        if(email == null){
+    public Optional<User> authenticate(User user){
+        if(user.getEmail().equals(null)){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, String.format(Messages.EMAIL_IS_EMPTY));
         }
 
-        if(password == null){
+        if(user.getPassword().equals(null)){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, String.format(Messages.PASSWORD_IS_EMPTY));
         }
 
-        if(!isEmailInUse(email)){
+        if(!isEmailInUse(user.getEmail())){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, String.format(Messages.EMAIL_DOES_NOT_EXIST));
         }
 
-        return  null;
+        Optional<User> userToAuthenticate = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        if(!userToAuthenticate.isPresent()){
+            return Optional.of(user);
+        }
+        return  userToAuthenticate;
     }
 
     public Optional<User> getUserById(@NonNull Long userId){

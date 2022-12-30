@@ -44,6 +44,8 @@ public class User {
 
     private String phoneNumber;
 
+    private String password;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_streams_table",
