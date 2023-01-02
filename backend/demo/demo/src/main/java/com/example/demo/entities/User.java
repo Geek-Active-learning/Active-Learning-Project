@@ -1,12 +1,12 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.Table;
 
 
-import java.util.Collection;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,6 +23,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @Data
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class User {
 
     @Id
@@ -38,7 +39,7 @@ public class User {
 
     private Date dob;
 
-    private  String githubUsername;
+    private String githubUsername;
 
     private String email;
 
@@ -46,24 +47,24 @@ public class User {
 
     private String password;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
-            name = "users_streams_table",
+            name = "user_course_table",
             joinColumns = @JoinColumn(
                     name = "users-table", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "streams_table", referencedColumnName = "id"))
-    private Stream stream;
+                    name = "courses_table", referencedColumnName = "id"))
+    private Course course;
 
     private Date startDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
-            name = "users_roles_table",
+            name = "user_role_table",
             joinColumns = @JoinColumn(
                     name = "users-table", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "roles_table", referencedColumnName = "id"))
-    private Roles roles;
+    private Roles role;
 
 }

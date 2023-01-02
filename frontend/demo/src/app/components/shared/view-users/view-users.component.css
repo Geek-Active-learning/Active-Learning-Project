@@ -1,0 +1,23 @@
+
+.card{
+
+    height: 100%;
+ }
+
+ .card-body{
+    padding: 5em;
+}
+.search{
+    float: right;
+}
+
+  @media screen and (max-width: 600px) {
+
+    .card-body{
+        padding: 0em;
+    }
+    .search{
+        float: none;
+        width: 100%;
+    }
+  }

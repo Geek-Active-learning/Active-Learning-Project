@@ -30,22 +30,23 @@ public class UserController {
         return this.userService.authenticate(user);
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/{userId}")
     public Optional<User> getUserById(@PathVariable Long userId){
         return this.userService.getUserById(userId);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<String> createNewUser(@RequestBody User user){
+        System.out.println(user);
         return this.userService.createNewUser(user);
     }
 
-    @PutMapping
-    public ResponseEntity<String> updateUser(@RequestBody User user, @PathVariable Long id){
-        return this.userService.updateUser(user,id);
+    @PutMapping("/{userId}")
+    public ResponseEntity<String> updateUser(@RequestBody User user, @PathVariable Long userId){
+        return this.userService.updateUser(user,userId);
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId){
         return this.userService.deleteUser(userId);
     }

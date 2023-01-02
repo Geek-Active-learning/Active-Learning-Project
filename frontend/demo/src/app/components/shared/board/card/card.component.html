@@ -1,0 +1,20 @@
+<div class="card text-center">
+  <div class="card-header">{{ inData.name }}</div>
+  <div class="card-body">
+    <h3 class="card-title">flavours:</h3>
+    <div class="card-text" *ngFor="let flavour of inData.flavours">
+      {{ flavour }}
+    </div>
+    <h3 class="card-title">Reviewers:</h3>
+    <div class="card-text" *ngFor="let reviewer of inData.reviewers">
+      {{ reviewer }}
+    </div>
+
+    <h3 class="card-title">Prerequisites:</h3>
+    <div class="card-text" *ngFor="let prerequisite of inData.prerequisite">
+      {{ prerequisite }}
+    </div>
+    
+    <a href="#" class="btn btn-primary">Start project</a>
+  </div>
+</div>

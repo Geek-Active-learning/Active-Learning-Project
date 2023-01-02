@@ -11,8 +11,8 @@ import lombok.*;
 
 /** Represents a single stream */
 
-@Entity(name = "roles_table")
-@Table(appliesTo = "roles_table")
+@Entity(name = "courses_table")
+@Table(appliesTo = "courses_table")
 @Builder
 @Getter
 @Setter
@@ -22,7 +22,7 @@ import lombok.*;
 @ToString
 @Data
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Roles {
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uidgenerator")
     @SequenceGenerator(name = "uidgenerator", sequenceName = "uid_sequence")
@@ -30,8 +30,7 @@ public class Roles {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String  name;
-    public Roles(@NonNull String role) {
-        this.name = role;
+    public Course(@NonNull String course) {
+        this.name = course;
     }
-
 }

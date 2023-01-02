@@ -62,7 +62,7 @@ public class UserService {
         return user;
     }
 
-    public ResponseEntity<String> createNewUser( User user){
+    public ResponseEntity<String> createNewUser(User user){
         if(isPhoneNumberInUse(user.getPhoneNumber())){
             throw new ResponseStatusException(
                     HttpStatus.IM_USED, String.format(Messages.PHONE_NUMBER_ALREADY_EXIST, user.getPhoneNumber()));
@@ -85,9 +85,9 @@ public class UserService {
                 .dob(user.getDob())
                 .name(user.getName())
                 .email(user.getEmail())
-                .roles(user.getRoles())
+                .role(user.getRole())
                 .phoneNumber(user.getPhoneNumber())
-                .stream(user.getStream())
+                .course(user.getCourse())
                 .surname(user.getSurname())
                 .startDate(user.getStartDate())
                 .githubUsername(user.getGithubUsername()).build();

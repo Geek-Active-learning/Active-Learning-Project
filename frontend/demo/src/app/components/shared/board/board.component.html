@@ -1,0 +1,47 @@
+<div class="card bg-dark text-white">
+  <div class="card-body d-flex flex-column">
+    <h4 class="card-header">My learnings | My board</h4>
+    <div class="board">
+      <div class="board-wrapper">
+        <div class="board-columns text-dark">
+          <div
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            class="board-columns"
+            (cdkDropListDropped)="dropGrid($event)"
+          >
+            <div
+              cdkDragLockAxis="x"
+              class="board-column"
+              *ngFor="let column of board.columns"
+              cdkDrag
+            >
+              <div class="column-title" cdkDragHandle>
+                {{ column.name }}
+              </div>
+              <div
+                class="tasks-container"
+                id="{{ column.id }}"
+                [cdkDropListConnectedTo]="[
+                  'IN_BACKLOG',
+                  'IN_PROGRESS',
+                  'IN_REQUESTED_REVIEW',
+                  'IN_REVIEW',
+                  'IN_COMPLETED'
+                ]"
+                cdkDropList
+                [cdkDropListData]="column.tasks"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <div class="task" *ngFor="let cards of column.tasks" cdkDrag>
+                  <div [plt-card]="cards"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <plt-footer></plt-footer>
+  </div>
+</div>
