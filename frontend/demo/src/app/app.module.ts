@@ -19,6 +19,11 @@ import { BoardComponent } from './components/shared/board/board.component';
 import { ViewUsersComponent } from './components/shared/view-users/view-users.component';
 import { CardComponent } from './components/shared/board/card/card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -45,7 +50,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    DragDropModule 
+    DragDropModule ,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
