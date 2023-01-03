@@ -47,7 +47,8 @@ public class UserService {
 
         Optional<User> userToAuthenticate = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if(!userToAuthenticate.isPresent()){
-            return Optional.of(user);
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, String.format(Messages.USER_DOES_NOT_EXIST_MESSAGE, user.toString()));
         }
         return  userToAuthenticate;
     }

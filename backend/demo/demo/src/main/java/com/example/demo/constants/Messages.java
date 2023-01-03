@@ -15,7 +15,9 @@ public class Messages {
 
     public static final String USER_DELETED_SUCCESSFUL_MESSAGE = "The following user has been deleted %s";
     public static final String USER_CREATED_SUCCESS_MESSAGE = "The following user has been added %s";
-    public static final String USER_NOT_CREATED_ERROR_MESSAGE = "The following user has been added %s";
+    public static final String USER_NOT_CREATED_MESSAGE = "The following user has been added %s";
+
+    public static final String USER_DOES_NOT_EXIST_MESSAGE = "The following user does not exist %s";
 
     //ROLES
     public static final String ROLE_NOT_FOUND_ERROR_MESSAGE = "Could not find the role with ID %d";

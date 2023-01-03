@@ -58,7 +58,6 @@ export class ViewUsersComponent {
           if (data === null) {
             return [];
           }
-          console.log(data)
           // this.resultsLength = datatotalCount.;
           this.resultsLength = 0;
           return data;

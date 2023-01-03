@@ -9,7 +9,6 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/modules/material-modules';
-import { SidenavComponent } from './components/shared/sidenav/sidenav.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import {RegisterComponent} from './components/account/register/register.component';
@@ -32,7 +31,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     FooterComponent,
     HeaderComponent,
     AdminComponent,
-    SidenavComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,

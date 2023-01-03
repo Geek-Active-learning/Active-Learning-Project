@@ -23,27 +23,4 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-
-//	@Bean
-//	CommandLineRunner init(UserRepository userRepository) {
-//		return args -> {
-//			Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
-//				User user = new User(1L,
-//						name.toLowerCase(),
-//						name.toUpperCase(),
-//						new Date(), name.toLowerCase(),
-//						name.toLowerCase()+"@gmail.com",
-//						"0661826809",
-//						"1234",
-//						Course.builder().name("JAVA").build(),
-//						new Date(),
-//						Roles.builder().name("ADMIN").build()
-//						);
-//				userRepository.save(user);
-//			});
-//			userRepository.findAll().forEach(System.out::println);
-//		};
-//	}
-	
-
 }
