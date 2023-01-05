@@ -8,6 +8,7 @@ import org.hibernate.annotations.Table;
 
 
 import java.util.Date;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -47,14 +48,14 @@ public class User {
 
     private String password;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_course_table",
             joinColumns = @JoinColumn(
                     name = "users-table", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "courses_table", referencedColumnName = "id"))
-    private Course course;
+    private Set<Course> course;
 
     private Date startDate;
 
@@ -65,6 +66,6 @@ public class User {
                     name = "users-table", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "roles_table", referencedColumnName = "id"))
-    private Roles role;
+    private Role role;
 
 }

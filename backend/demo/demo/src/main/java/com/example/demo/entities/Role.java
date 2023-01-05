@@ -22,7 +22,7 @@ import lombok.*;
 @ToString
 @Data
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Roles {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uidgenerator")
     @SequenceGenerator(name = "uidgenerator", sequenceName = "uid_sequence")
@@ -30,7 +30,7 @@ public class Roles {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String  name;
-    public Roles(@NonNull String role) {
+    public Role(@NonNull String role) {
         this.name = role;
     }
 

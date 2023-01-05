@@ -1,37 +1,46 @@
 package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.Builder;
+import lombok.*;
 import org.hibernate.annotations.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
-
-
-import java.util.Set;
-
-/** Represents a single stream */
-
-@Entity(name = "courses_table")
-@Table(appliesTo = "courses_table")
+@Entity(name = "units_table")
+@Table(appliesTo = "units_table")
 @Builder
 @Getter
 @Setter
 @JsonIgnoreProperties(value = {"id"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@ToString
+@Data
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Course {
+public class Unit {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uidgenerator")
     @SequenceGenerator(name = "uidgenerator", sequenceName = "uid_sequence")
     @Getter
     @Setter(AccessLevel.NONE)
     private Long id;
+    private String name;
 
-    private String  name;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
-    @OneToMany(mappedBy="id")
-    private Set<Unit> unit;
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Unit(String name){
+        this.name = name;
+    }
+
+
 }
