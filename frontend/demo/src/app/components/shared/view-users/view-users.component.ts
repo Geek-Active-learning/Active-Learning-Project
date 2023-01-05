@@ -25,7 +25,6 @@ export class ViewUsersComponent {
     'Stream',
     'Role',
   ];
-  accountService!: AccountService | null;
   data: Users[] = [];
 
   resultsLength = 0;
@@ -35,10 +34,9 @@ export class ViewUsersComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router, private _httpClient: HttpClient) {}
+  constructor(private accountService: AccountService,private router: Router, private _httpClient: HttpClient) {}
 
   ngAfterViewInit() {
-    this.accountService = new AccountService(this.router, this._httpClient);
 
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 

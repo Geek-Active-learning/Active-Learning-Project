@@ -1,10 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "environment";
 import { Users } from "src/app/interfaces/users";
+import { AppConfig } from "src/app/shared/services/AppConfig/appconfig.interface";
+import { APP_SERVICE_CONFIG } from "src/app/shared/services/AppConfig/appconfig.service";
 
 
 @Injectable({
@@ -14,7 +16,7 @@ export class AccountService {
   private userSubject!: BehaviorSubject<Users>;
   public users!: Observable<Users>;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor( @Inject(APP_SERVICE_CONFIG) private _config: AppConfig,private router: Router, private http: HttpClient) {
     this.userSubject = new BehaviorSubject<Users>(
       JSON.parse(localStorage.getItem("user")!)
     );
@@ -50,7 +52,7 @@ export class AccountService {
   }
 
   register(user: Users) {
-    return this.http.post(`${environment.apiUrl}/register`, user);
+    return this.http.post(`${this._config.apiRoute}/register`, user);
   }
 
   getAllUser(): Observable<Users[]>{

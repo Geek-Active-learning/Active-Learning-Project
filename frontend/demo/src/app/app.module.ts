@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/modules/material-modules';
 import { LoginComponent } from './components/account/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import {RegisterComponent} from './components/account/register/register.component';
+import { RegisterComponent } from './components/account/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BoardComponent } from './components/shared/board/board.component';
@@ -23,7 +23,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import {
+  APP_SERVICE_CONFIG,
+  APP_CONFIG,
+} from './shared/services/AppConfig/appconfig.service';
 
 @NgModule({
   declarations: [
@@ -37,25 +40,25 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     DashboardComponent,
     BoardComponent,
     ViewUsersComponent,
-    CardComponent
+    CardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule, 
+    FormsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
-    DragDropModule ,
+    DragDropModule,
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
