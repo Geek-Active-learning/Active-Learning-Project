@@ -8,12 +8,12 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "plt",
+      "prefix": "alp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/demo",
+            "outputPath": "dist/Active Learning Project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

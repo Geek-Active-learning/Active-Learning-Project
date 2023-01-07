@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'plt-footer',
+  selector: 'alp-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })

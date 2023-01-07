@@ -8,11 +8,12 @@ import { AccountService,AlertService } from "src/app/services/account";
 
 
 @Component({
-  selector: 'plt-login',
+  selector: 'alp-login',
   templateUrl:'./login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   loginForm!: FormGroup;
   loading = false;
   submitted = false;

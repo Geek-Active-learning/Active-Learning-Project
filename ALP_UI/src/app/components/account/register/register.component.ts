@@ -13,7 +13,7 @@ import { AccountService,AlertService } from 'src/app/services/account';
 import { Roles,Courses } from 'src/app/models';
 
 @Component({
-  selector: 'plt-register',
+  selector: 'alp-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })

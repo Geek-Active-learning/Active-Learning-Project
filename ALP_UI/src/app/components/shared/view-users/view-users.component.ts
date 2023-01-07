@@ -9,7 +9,7 @@ import { Users } from 'src/app/interfaces/users';
 import { AccountService } from 'src/app/services/account';
 
 @Component({
-  selector: 'plt-view-users',
+  selector: 'alp-view-users',
   templateUrl: './view-users.component.html',
   styleUrls: ['./view-users.component.css'],
 })

@@ -73,7 +73,7 @@ const ELEMENT_DATA: Card[] = [
 ];
 
 @Component({
-  selector: 'plt-board',
+  selector: 'alp-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css'],
 })

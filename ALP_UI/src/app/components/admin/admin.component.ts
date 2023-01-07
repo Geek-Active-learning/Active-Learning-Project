@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 
 
 @Component({
-  selector: 'plt-admin',
+  selector: 'alp-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
