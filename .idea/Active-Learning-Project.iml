@@ -3,9 +3,9 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/ALP_API/ApplicationProgrammingLayer" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ALP_API/BusinessLayer" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ALP_API/DataLayer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ALP_API/API" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ALP_API/BL" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ALP_API/DL" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
