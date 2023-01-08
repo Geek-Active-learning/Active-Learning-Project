@@ -1,0 +1,86 @@
+<div class="card bg-dark text-white">
+  <div class="row no-gutters">
+    <div class="col-md-6 content">
+      <img
+        src="../../assets/images/online.jpg"
+        class="card-img"
+        alt="online learning image"
+      />
+    </div>
+    <div class="col-md-6 form-card d-flex flex-column">
+      <div class="card-body">
+        <mat-toolbar class="bg-dark text-white">
+          <button mat-button class="menu-button" routerLink="/login">
+            <span>Active Learning Project</span>
+          </button>
+          <span class="spacer"></span>
+          <button mat-button class="menu-button" routerLink="/register/anonymous">
+            <span>Register</span>
+          </button>
+        </mat-toolbar>
+        <h4 class="card-header">Login</h4>
+        <form
+          class="form-horizontal"
+          role="form"
+          [formGroup]="loginForm"
+          (submit)="onSubmit()"
+        >
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': submitted && controls['email'].errors
+              }"
+            />
+            <div
+              *ngIf="submitted && controls['email'].errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="controls['email'].errors['required']">
+                Email is required
+              </div>
+              <div *ngIf="controls['email'].errors['email']">
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': submitted && controls['password'].errors
+              }"
+            />
+            <div
+              *ngIf="submitted && controls['password'].errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="controls['password'].errors['required']">
+                Password is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary" routerLink="/dashboard">
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Login
+            </button>
+            <a mat-button class="menu-button" class="btn btn-forgot text-primary" routerLink="/dashboard">
+              <span>Forgot Password?</span>
+            </a>
+          </div>
+        </form>
+      </div>
+      <alp-footer></alp-footer>
+    </div>
+  </div>
+</div>
