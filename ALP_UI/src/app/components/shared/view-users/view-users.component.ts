@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { merge, Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { Users } from 'src/app/interfaces/users';
-import { AccountService } from 'src/app/services/account';
+import { AccountService } from 'src/app/components/account/shared/services/account';
 
 @Component({
   selector: 'alp-view-users',

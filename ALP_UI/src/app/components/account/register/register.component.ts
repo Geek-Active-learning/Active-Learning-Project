@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService,AlertService } from 'src/app/services/account';
+import {
+  AccountService,
+  AlertService,
+} from 'src/app/components/account/shared/services/account';
 
-import { Roles,Courses } from 'src/app/models';
+import { Roles, Courses } from 'src/app/models';
 
 @Component({
   selector: 'alp-register',
@@ -24,6 +23,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   loading = false;
   submitted = false;
+  isAnonymous = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,24 +45,24 @@ export class RegisterComponent implements OnInit {
       role: ['', Validators.required],
       course: ['', Validators.required],
     });
-   this.resetToDefaultValues();
+    this.resetToDefaultValues();
   }
 
-  resetToDefaultValues(){
+  resetToDefaultValues() {
     setTimeout(() => {
       this.registerForm.controls['role'].setValue(this.roles.selectRole);
       this.registerForm.controls['course'].setValue(this.courses.selectCourse);
+      this.registerForm.controls['startDate'].setValue(new Date().toISOString().split("T")[0]);
     }, 0);
   }
 
-  isDefaultRole(role:Roles):boolean{
+  isDefaultRole(role: Roles): boolean {
     return role === Roles.selectRole;
   }
 
-  isDefaultCourse(course:Courses):boolean{
+  isDefaultCourse(course: Courses): boolean {
     return course === Courses.selectCourse;
   }
- 
 
   validRole(role: string): Boolean {
     return (
@@ -86,9 +86,6 @@ export class RegisterComponent implements OnInit {
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
-    }
-    for(let key in this.registerForm.value){
-        console.log(key +" : "+this.registerForm.value[key]);
     }
 
     this.loading = true;

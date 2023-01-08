@@ -1,10 +1,9 @@
-import { APP_SERVICE_CONFIG,APP_CONFIG } from './../../shared/services/AppConfig/appconfig.service';
+import { APP_SERVICE_CONFIG,APP_CONFIG } from '../../../../../shared/services/AppConfig/appconfig.service';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { config, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Users } from 'src/app/interfaces/users';
-import { environment } from 'environment';
-import { AppConfig } from './../../shared/services/AppConfig/appconfig.interface';
+import { AppConfig } from '../../../../../shared/services/AppConfig/appconfig.interface';
 
 @Injectable({
   providedIn: 'root',

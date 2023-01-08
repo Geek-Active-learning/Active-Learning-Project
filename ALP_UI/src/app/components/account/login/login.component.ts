@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { first } from "rxjs/operators";
 
-import { AccountService,AlertService } from "src/app/services/account";
+import { AccountService,AlertService } from "src/app/components/account/shared/services/account";
 
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl!: string;
+  anonymous ="anonymous";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,11 +65,10 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log("I am an data : " + data);
+          //Change this
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          console.log("I am an error : " + error);
           this.alertService.error(error);
           this.loading = false;
         }

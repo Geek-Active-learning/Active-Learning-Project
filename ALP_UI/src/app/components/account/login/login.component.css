@@ -22,9 +22,10 @@ img {
 .card-body{
     padding: 0em 5rem 0em 5em;
 }
-.btn-link{
+.btn-forgot{
     float:right;
 }
+
 
 @media screen and (max-width: 600px) {
   .card {

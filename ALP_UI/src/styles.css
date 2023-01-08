@@ -46,3 +46,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     max-width: 124px;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}

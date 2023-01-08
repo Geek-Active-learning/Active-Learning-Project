@@ -13,6 +13,7 @@ export class AlertService {
 
     // enable subscribing to alerts observable
     onAlert(id = this.defaultId): Observable<Alert> {
+        console.log("I am an Id",id)
         return this.subject.asObservable().pipe(filter(x => x && x.id === id));
     }
 
@@ -41,6 +42,7 @@ export class AlertService {
 
     // clear alerts
     clear(id = this.defaultId) {
+        console.log("I am clearing ", id)
         this.subject.next(new Alert({ id }));
     }
 }
