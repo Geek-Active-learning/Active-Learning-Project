@@ -25,7 +25,6 @@ public class Unit {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
