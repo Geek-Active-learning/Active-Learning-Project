@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { environment } from "environment";
+import { environment } from "src/environments/environment";
 import { Users } from "src/app/interfaces/users";
 import { AppConfig } from "src/app/shared/services/AppConfig/appconfig.interface";
 import { APP_SERVICE_CONFIG } from "src/app/shared/services/AppConfig/appconfig.service";

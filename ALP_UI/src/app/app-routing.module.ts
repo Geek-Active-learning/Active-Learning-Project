@@ -6,12 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/account/register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: ViewUsersComponent },
   { path: 'register/:role', component: RegisterComponent },
   { path: 'board', component: BoardComponent },
-  { path: '**', component: LoginComponent },
+  { path: '**', component: ViewUsersComponent },
 ];
 
 @NgModule({
