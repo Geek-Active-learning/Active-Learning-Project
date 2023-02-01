@@ -26,7 +26,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {
   APP_SERVICE_CONFIG,
   APP_CONFIG,
-} from './shared/services/AppConfig/appconfig.service';
+} from './shared/services/AppConfig/app-config.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {
     BoardComponent,
     ViewUsersComponent,
     CardComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

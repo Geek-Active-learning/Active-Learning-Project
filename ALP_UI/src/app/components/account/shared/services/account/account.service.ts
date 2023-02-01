@@ -5,8 +5,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Users } from "src/app/interfaces/users";
-import { AppConfig } from "src/app/shared/services/AppConfig/appconfig.interface";
-import { APP_SERVICE_CONFIG } from "src/app/shared/services/AppConfig/appconfig.service";
+import { AppConfig } from "src/app/shared/services/AppConfig/app-config..interface";
+import { APP_SERVICE_CONFIG } from "src/app/shared/services/AppConfig/app-config.service";
 
 
 @Injectable({
@@ -38,7 +38,7 @@ export class AccountService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("user", JSON.stringify(user));
           this.userSubject.next(user);
-          
+
           return user;
         })
       );
