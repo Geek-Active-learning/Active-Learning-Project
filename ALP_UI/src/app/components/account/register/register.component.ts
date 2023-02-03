@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
@@ -9,7 +8,7 @@ import {
   AlertService,
 } from 'src/app/components/account/shared/services/account';
 
-import { Roles, Courses } from 'src/app/models';
+import { Roles, Courses, User } from 'src/app/models';
 
 @Component({
   selector: 'alp-register',
@@ -24,6 +23,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   isAnonymous = false;
+  model!: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,9 +50,11 @@ export class RegisterComponent implements OnInit {
 
   resetToDefaultValues() {
     setTimeout(() => {
-      this.registerForm.controls['role'].setValue(this.roles.selectRole);
-      this.registerForm.controls['course'].setValue(this.courses.selectCourse);
-      this.registerForm.controls['startDate'].setValue(new Date().toISOString().split("T")[0]);
+      this.controls['role'].setValue(this.roles.selectRole);
+      this.controls['course'].setValue(this.courses.selectCourse);
+      this.controls['startDate'].setValue(
+        new Date().toISOString().split('T')[0]
+      );
     }, 0);
   }
 
@@ -64,15 +66,6 @@ export class RegisterComponent implements OnInit {
     return course === Courses.selectCourse;
   }
 
-  validRole(role: string): Boolean {
-    return (
-      role === this.roles.ADMIN ||
-      role === this.roles.SUPER_ADMIN ||
-      role === this.roles.TRAINEE ||
-      role === this.roles.TRAINER
-    );
-  }
-
   get controls() {
     return this.registerForm.controls;
   }
@@ -80,33 +73,29 @@ export class RegisterComponent implements OnInit {
   onRegister() {
     this.submitted = true;
 
-    // reset alerts on submit
     this.alertService.clear();
 
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
 
     this.loading = true;
-    this.accountService
-      .register(this.registerForm.value)
-      .pipe(first())
-      .subscribe(
-        (data) => {
-          console.log('Registration successfully');
-          this.alertService.success('Registration successful', {
-            keepAfterRouteChange: true,
-          });
-          this.router.navigate(['../login'], { relativeTo: this.route });
-        },
-        (error) => {
-          console.log('error happen : ' + error.message);
-          this.alertService.error(error);
-          this.loading = false;
-        }
-      );
+    this.accountService.register(this.registerForm.value).subscribe(
+      (data) => {
+        console.log('Registration successfully' + data);
+        this.alertService.success('Registration successful', {
+          keepAfterRouteChange: true,
+        });
+        this.router.navigate(['../login'], { relativeTo: this.route });
+      },
+      (error) => {
+        console.log('error happen : ' + error.message);
+        this.alertService.error(error); //Instead, why not log it?
+        this.loading = false;
+      }
+    );
   }
+
   onReset() {
     this.resetToDefaultValues();
     this.submitted = false;

@@ -19,13 +19,16 @@ img {
   text-align: center;
 }
 
-.card-body{
-    padding: 0em 5rem 0em 5em;
+.card-body {
+  padding: 0em 5rem 0em 5em;
 }
-.btn-forgot{
-    float:right;
+.btn-forgot {
+  float: right;
 }
 
+img{
+  object-fit: cover;
+}
 
 @media screen and (max-width: 600px) {
   .card {
@@ -41,14 +44,13 @@ img {
   .content {
     height: 200px;
   }
-  .card-body{
+  .card-body {
     padding: 0em 1rem 0em 1em;
-}
-.card-header {
+  }
+  .card-header {
     margin-top: 0%;
   }
-  .btn-link{
+  .btn-link {
     float: none;
-}
-
+  }
 }

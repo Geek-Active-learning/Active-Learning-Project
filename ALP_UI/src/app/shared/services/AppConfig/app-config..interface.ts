@@ -1,3 +1,3 @@
 export interface AppConfig {
-    apiRoute:string;
+  apiRoute: string;
 }

@@ -114,7 +114,7 @@ export class BoardComponent {
     this.inProgressColumn,
     this.inReviewRequestColumn,
     this.inReviewColumn,
-    this.inCompletedColumn
+    this.inCompletedColumn,
   ]);
 
   resultsLength = 0;

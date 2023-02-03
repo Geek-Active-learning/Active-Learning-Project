@@ -29,9 +29,9 @@ public class Role {
     @Getter
     @Setter(AccessLevel.NONE)
     private Long id;
-    private String  name;
+    private String  role;
     public Role(@NonNull String role) {
-        this.name = role;
+        this.role = role;
     }
 
 }

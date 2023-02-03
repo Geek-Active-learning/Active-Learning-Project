@@ -1,31 +1,27 @@
-
- .card{
-
-    height: 100%;
- }
-
- .card-body{
-    padding: 5em;
-}
-.btn{
-    float: right;
+.card {
+  height: 100%;
 }
 
-.btnReset{
-    margin-right: 20px;
+.card-body {
+  padding: 5em;
+}
+.btn {
+  float: right;
 }
 
-  @media screen and (max-width: 600px) {
+.btnReset {
+  margin-right: 20px;
+}
 
-    .card-body{
-        padding: 0em;
-    }
-    .btn{
-        float: none;
-        width: 100%;
-    }
-    .btnReset{
-        margin-top: 20px;
-    }
+@media screen and (max-width: 600px) {
+  .card-body {
+    padding: 0em;
   }
-  
+  .btn {
+    float: none;
+    width: 100%;
+  }
+  .btnReset {
+    margin-top: 20px;
+  }
+}

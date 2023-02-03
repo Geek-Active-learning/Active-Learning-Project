@@ -34,10 +34,13 @@ export class ViewUsersComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private accountService: AccountService,private router: Router, private _httpClient: HttpClient) {}
+  constructor(
+    private accountService: AccountService,
+    private router: Router,
+    private _httpClient: HttpClient
+  ) {}
 
   ngAfterViewInit() {
-
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
     merge(this.sort.sortChange, this.paginator.page)
@@ -56,7 +59,7 @@ export class ViewUsersComponent {
           if (data === null) {
             return [];
           }
-          // this.resultsLength = datatotalCount.;
+          // this.resultsLength = dataTotalCount.;
           this.resultsLength = 0;
           return data;
         })

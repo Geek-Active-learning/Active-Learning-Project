@@ -1,27 +1,26 @@
 .example-container {
-    margin:0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .mat-sidenav {
-    width: 250px;
-    background-color:#0f0;
-  }
-  
-  .sidenav-content {
-    display: flex;
-    flex-direction: column;
-  }
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-  li a{
-    text-decoration: none;
-    font-size: xx-large;
+.mat-sidenav {
+  width: 250px;
+  background-color: #0f0;
+}
 
-  }
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
 
-  ul {
-    list-style-type: none;
+li a {
+  text-decoration: none;
+  font-size: xx-large;
+}
+
+ul {
+  list-style-type: none;
 }

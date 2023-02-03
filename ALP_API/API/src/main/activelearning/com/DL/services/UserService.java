@@ -55,21 +55,14 @@ public class UserService {
     }
 
     public Optional<User> getUserById(@NonNull Long userId){
-        Optional<User>  user =userRepository.findById(userId);
-
-        if(user.isPresent()){
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, String.format(Messages.USER_NOT_FOUND_ERROR_MESSAGE, userId));
-        }
-        return user;
+         return userRepository.findById(userId);
     }
 
-    public User createNewUser(User user) throws UserAlreadyRegisteredException {
+    public User addUser(User user) throws UserAlreadyRegisteredException {
 
         if(isPhoneNumberInUse(user.getPhoneNumber())){
             throw new UserAlreadyRegisteredException(
                     String.format(Messages.PHONE_NUMBER_ALREADY_EXIST, user.getPhoneNumber()));
-
         }
 
         if(user.getPhoneNumber().equals(null)){
@@ -82,7 +75,7 @@ public class UserService {
                     String.format(Messages.EMAIL_ALREADY_EXIST, user.getPhoneNumber()));
         }
 
-        if(isGithubUsernameInUse(user.getGithubUsername())){
+        if(isGithubUsernameInUse(user.getGithub())){
             throw new UserAlreadyRegisteredException(
                     String.format(Messages.GITHUB_USERNAME_ALREADY_EXIST, user.getPhoneNumber()));
         }
@@ -94,12 +87,10 @@ public class UserService {
                 .dob(user.getDob())
                 .name(user.getName())
                 .email(user.getEmail())
-                .role(user.getRole())
                 .phoneNumber(user.getPhoneNumber())
-                .course(user.getCourse())
                 .surname(user.getSurname())
                 .startDate(user.getStartDate())
-                .githubUsername(user.getGithubUsername()).build();
+                .github(user.getGithub()).build();
     }
 
     @Transactional
@@ -127,6 +118,6 @@ public class UserService {
     }
 
     public boolean isGithubUsernameInUse(@NonNull String githubUsername){
-        return userRepository.findByGithubUsername(githubUsername).isPresent();
+        return userRepository.findByGithub(githubUsername).isPresent();
     }
 }

@@ -9,10 +9,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'alp-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
- 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   constructor(private router: Router) {}
@@ -25,7 +24,7 @@ export class DashboardComponent {
       .subscribe(() => {
         if (this.sidenav.mode === 'over') {
           this.sidenav.close();
-        }else{
+        } else {
           this.sidenav.open();
         }
       });

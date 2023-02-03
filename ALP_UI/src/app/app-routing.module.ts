@@ -7,16 +7,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/account/register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'users', component: ViewUsersComponent },
   { path: 'register/:role', component: RegisterComponent },
   { path: 'board', component: BoardComponent },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

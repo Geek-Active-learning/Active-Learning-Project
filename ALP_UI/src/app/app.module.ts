@@ -10,7 +10,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/modules/material-modules';
 import { LoginComponent } from './components/account/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './components/account/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -28,6 +28,7 @@ import {
   APP_CONFIG,
 } from './shared/services/AppConfig/app-config.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ErrorsInterceptor } from './shared/interceptors/errors.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatIconModule,
     MatDividerModule,
   ],
-  providers: [{ provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG }],
+  providers: [
+    { provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorsInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
