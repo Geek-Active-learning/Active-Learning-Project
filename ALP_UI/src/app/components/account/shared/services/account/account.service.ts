@@ -61,12 +61,13 @@ export class AccountService {
       name: user.name,
       surname: user.surname,
       dob: user.dob,
-      githubUsername: user.githubUsername,
+      github: user.github,
       email: user.email,
       phoneNumber: user.phoneNumber,
       role: user.roles,
       startDate: user.startDate,
-      course: user.stream,
+      firstCourse: user.firstCourse,
+      secondCourse: user.secondCourse
     };
 
     return this.http.post(

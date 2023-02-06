@@ -78,22 +78,22 @@
           </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="githubUsername">Github username</label>
+          <label for="github">Github username</label>
           <input
             type="text"
             class="form-control"
-            id="githubUsername"
+            id="github"
             placeholder="Github username"
-            formControlName="githubUsername"
+            formControlName="github"
             [ngClass]="{
-              'is-invalid': submitted && controls['githubUsername'].errors
+              'is-invalid': submitted && controls['github'].errors
             }"
           />
           <div
-            *ngIf="submitted && controls['githubUsername'].errors"
+            *ngIf="submitted && controls['github'].errors"
             class="invalid-feedback"
           >
-            <div *ngIf="controls['githubUsername'].errors['required']">
+            <div *ngIf="controls['github'].errors['required']">
               Github username is required
             </div>
           </div>
@@ -102,23 +102,24 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="githubUsername">Github username</label>
+          <label for="email">Email</label>
           <input
-            type="text"
+            type="email"
             class="form-control"
-            id="githubUsername"
-            placeholder="Github username"
-            formControlName="githubUsername"
-            [ngClass]="{
-              'is-invalid': submitted && controls['githubUsername'].errors
-            }"
+            id="email"
+            placeholder="Email"
+            formControlName="email"
+            [ngClass]="{ 'is-invalid': submitted && controls['email'].errors }"
           />
           <div
-            *ngIf="submitted && controls['githubUsername'].errors"
+            *ngIf="submitted && controls['email'].errors"
             class="invalid-feedback"
           >
-            <div *ngIf="controls['githubUsername'].errors['required']">
-              Github username is required
+            <div *ngIf="controls['email'].errors['required']">
+              Email is required
+            </div>
+            <div *ngIf="controls['email'].errors['email']">
+              Email must be a valid email address
             </div>
           </div>
         </div>
@@ -146,30 +147,20 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Email"
-            formControlName="email"
-            [ngClass]="{ 'is-invalid': submitted && controls['email'].errors }"
-          />
-          <div
-            *ngIf="submitted && controls['email'].errors"
-            class="invalid-feedback"
-          >
-            <div *ngIf="controls['email'].errors['required']">
-              Email is required
-            </div>
-            <div *ngIf="controls['email'].errors['email']">
-              Email must be a valid email address
-            </div>
-          </div>
+          <label for="firstCourse">Area of interest</label>
+          <select id="firstCourse" class="form-control" formControlName="firstCourse">
+            <option
+              *ngFor="let course of values(courses)"
+              [ngValue]="course"
+              [disabled]="isDefaultCourse(course)"
+            >
+              {{ course }}
+            </option>
+          </select>
         </div>
         <div class="form-group col-md-6">
-          <label for="course">Area of interest</label>
-          <select id="course" class="form-control" formControlName="course">
+          <label for="secondCourse">Second choice</label>
+          <select id="secondCourse" class="form-control" formControlName="secondCourse">
             <option
               *ngFor="let course of values(courses)"
               [ngValue]="course"

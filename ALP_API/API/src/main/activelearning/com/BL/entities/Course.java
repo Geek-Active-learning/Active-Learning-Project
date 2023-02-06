@@ -29,9 +29,7 @@ public class Course {
     @Getter
     @Setter(AccessLevel.NONE)
     private Long id;
-
     private String  name;
-
     @OneToMany(mappedBy="id")
     private Set<Unit> unit;
 }

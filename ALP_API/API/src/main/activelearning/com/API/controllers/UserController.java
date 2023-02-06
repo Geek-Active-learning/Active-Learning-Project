@@ -3,7 +3,6 @@ package activelearning.com.API.controllers;
 import activelearning.com.BL.entities.User;
 import activelearning.com.DL.services.UserService;
 import activelearning.com.SHARED.custom.UserAlreadyRegisteredException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +15,13 @@ import java.util.Optional;
 import static activelearning.com.DL.constants.Messages.USER_NOT_FOUND_ERROR_MESSAGE;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/users")
 public class UserController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+ public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -55,14 +55,13 @@ public class UserController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> addUser(@RequestBody User user) {
-
         try {
             this.userService.addUser(user);
             return ResponseEntity.status(HttpStatus.OK).body("User created");
         } catch (UserAlreadyRegisteredException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            String errorMessage = e.getMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
         }
-
     }
 
     @PutMapping("/{userId}")

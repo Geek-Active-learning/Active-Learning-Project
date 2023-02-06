@@ -29,6 +29,7 @@ import {
 } from './shared/services/AppConfig/app-config.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ErrorsInterceptor } from './shared/interceptors/errors.interceptor';
+import { AlertComponent } from './components/account/shared/components/alert.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ErrorsInterceptor } from './shared/interceptors/errors.interceptor';
     ViewUsersComponent,
     CardComponent,
     PageNotFoundComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

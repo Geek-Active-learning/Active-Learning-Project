@@ -6,9 +6,10 @@ export class User {
   surname!: string;
   token!: string;
   dob!: Date;
-  githubUsername!: String;
+  github!: String;
   phoneNumber!: String;
-  stream!: [];
-  startDate!: [];
+  firstCourse!:String;
+  startDate!: String;
   roles!: [];
+  secondCourse!:String;
 }

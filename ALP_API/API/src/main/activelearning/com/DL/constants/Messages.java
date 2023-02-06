@@ -11,6 +11,8 @@ public class Messages {
 
     public static final String PASSWORD_IS_EMPTY = "Password is empty";
     public static final String GITHUB_USERNAME_ALREADY_EXIST = "Github username %s already exist";
+
+    public static final String GITHUB_USERNAME_IS_NULL = "Github username is empty";
     public static final String PHONE_NUMBER_ALREADY_EXIST = "Phone number %s already exist";
 
     public static final String PHONE_NUMBER_IS_NULL = "Provide phone number";

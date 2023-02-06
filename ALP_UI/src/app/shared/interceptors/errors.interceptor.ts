@@ -21,11 +21,8 @@ export class ErrorsInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.log("I am error ",error)
         if (error.status === 0) {
-          //Probably let client know about this error,
-          //log it as warning in case the problem continues, we can track
           console.error('An error occurred:', error);
         } else {
-          //Log this as high priority, log this according to status, e.g 400 means cannot find the api requested
           console.error(
             `Backend returned code ${error.status}, body was: `,
             error.error

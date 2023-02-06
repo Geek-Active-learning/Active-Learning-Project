@@ -2,7 +2,7 @@ export interface Users {
   name: String;
   surname: string;
   dob: Date;
-  githubUsername: String;
+  github: String;
   email: String;
   phoneNumber: String;
   stream: [];

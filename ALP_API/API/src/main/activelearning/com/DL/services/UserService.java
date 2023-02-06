@@ -1,5 +1,6 @@
 package activelearning.com.DL.services;
 
+import activelearning.com.API.config.Password;
 import activelearning.com.BL.entities.User;
 import activelearning.com.SHARED.custom.UserAlreadyRegisteredException;
 import lombok.NonNull;
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import activelearning.com.DL.constants.Messages;
 import activelearning.com.DL.repository.UserRepository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,69 +22,88 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private  final Password password;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, Password password) {
         this.userRepository = userRepository;
+        this.password = password;
     }
 
-    public List<User> getUsers(){
-        return  userRepository.findAll();
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 
-    public Optional<User> authenticate(User user){
-        if(user.getEmail().equals(null)){
+    public Optional<User> authenticate(User user) {
+        if (user.getEmail().equals(null)) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, String.format(Messages.EMAIL_IS_EMPTY));
         }
 
-        if(user.getPassword().equals(null)){
+        if (user.getPassword().equals(null)) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, String.format(Messages.PASSWORD_IS_EMPTY));
         }
 
-        if(!isEmailInUse(user.getEmail())){
+        if (!isEmailInUse(user.getEmail())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, String.format(Messages.EMAIL_DOES_NOT_EXIST));
         }
 
         Optional<User> userToAuthenticate = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        if(!userToAuthenticate.isPresent()){
+        if (!userToAuthenticate.isPresent()) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, String.format(Messages.USER_DOES_NOT_EXIST_MESSAGE, user.toString()));
         }
-        return  userToAuthenticate;
+        return userToAuthenticate;
     }
 
-    public Optional<User> getUserById(@NonNull Long userId){
-         return userRepository.findById(userId);
+    public Optional<User> getUserById(@NonNull Long userId) {
+        return userRepository.findById(userId);
     }
 
     public User addUser(User user) throws UserAlreadyRegisteredException {
 
-        if(isPhoneNumberInUse(user.getPhoneNumber())){
+        String password = this.password.generatePassword();
+        user.setPassword(password);
+
+        if (!user.getPhoneNumber().equals(null)) {
+            if (isPhoneNumberInUse(user.getPhoneNumber())) {
+                throw new UserAlreadyRegisteredException(
+                        String.format(Messages.PHONE_NUMBER_ALREADY_EXIST, user.getPhoneNumber()));
+            }
+        }else{
             throw new UserAlreadyRegisteredException(
-                    String.format(Messages.PHONE_NUMBER_ALREADY_EXIST, user.getPhoneNumber()));
+                    String.format(Messages.PHONE_NUMBER_IS_NULL));
         }
 
-        if(user.getPhoneNumber().equals(null)){
+        if(!user.getEmail().equals(null)){
+            if (isEmailInUse(user.getEmail())) {
+                throw new UserAlreadyRegisteredException(
+                        String.format(Messages.EMAIL_ALREADY_EXIST, user.getEmail()));
+            }
+        }else{
             throw new UserAlreadyRegisteredException(
-                    String.format(Messages.PHONE_NUMBER_IS_NULL, user.getPhoneNumber()));
+                    String.format(Messages.EMAIL_IS_EMPTY));
         }
 
-        if(isEmailInUse(user.getEmail())){
+
+        if(!user.getGithub().equals(null)){
+            if (isGithubUsernameInUse(user.getGithub())) {
+                throw new UserAlreadyRegisteredException(
+                        String.format(Messages.GITHUB_USERNAME_ALREADY_EXIST, user.getGithub()));
+            }
+        }else{
             throw new UserAlreadyRegisteredException(
-                    String.format(Messages.EMAIL_ALREADY_EXIST, user.getPhoneNumber()));
+                    String.format(Messages.GITHUB_USERNAME_IS_NULL));
         }
 
-        if(isGithubUsernameInUse(user.getGithub())){
-            throw new UserAlreadyRegisteredException(
-                    String.format(Messages.GITHUB_USERNAME_ALREADY_EXIST, user.getPhoneNumber()));
-        }
         userRepository.save(buildUser(user));
         return user;
     }
-    public  User buildUser(@NonNull User user){
+
+
+    public User buildUser(@NonNull User user) {
         return User.builder()
                 .dob(user.getDob())
                 .name(user.getName())
@@ -94,12 +115,12 @@ public class UserService {
     }
 
     @Transactional
-    public ResponseEntity<String> updateUser(User user,Long userId){
+    public ResponseEntity<String> updateUser(User user, Long userId) {
         //TODO
         return null;
     }
 
-    public ResponseEntity<String> deleteUser(@NonNull Long userId){
+    public ResponseEntity<String> deleteUser(@NonNull Long userId) {
         Optional<User> user = userRepository.findById(userId);
         if (!user.isPresent()) {
             throw new ResponseStatusException(
@@ -109,15 +130,15 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.OK).body(String.format(Messages.USER_DELETED_SUCCESSFUL_MESSAGE, user.toString()));
     }
 
-    public boolean isEmailInUse(@NonNull String email){
+    public boolean isEmailInUse(@NonNull String email) {
         return userRepository.findByEmail(email).isPresent();
     }
 
-    public boolean isPhoneNumberInUse(@NonNull String phoneNumber){
+    public boolean isPhoneNumberInUse(@NonNull String phoneNumber) {
         return userRepository.findByPhoneNumber(phoneNumber).isPresent();
     }
 
-    public boolean isGithubUsernameInUse(@NonNull String githubUsername){
+    public boolean isGithubUsernameInUse(@NonNull String githubUsername) {
         return userRepository.findByGithub(githubUsername).isPresent();
     }
 }

@@ -8,7 +8,7 @@ import {
   AlertService,
 } from 'src/app/components/account/shared/services/account';
 
-import { Roles, Courses, User } from 'src/app/models';
+import { Roles, Courses } from 'src/app/models';
 
 @Component({
   selector: 'alp-register',
@@ -39,27 +39,20 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required, Validators],
       surname: ['', Validators.required],
       dob: ['', Validators.required],
-      githubUsername: ['', Validators.required],
+      github: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       startDate: ['', Validators.required],
-      role: ['', Validators.required],
-      course: ['', Validators.required],
+      secondCourse: ['', Validators.required],
+      firstCourse: ['', Validators.required],
     });
     this.resetToDefaultValues();
   }
 
   resetToDefaultValues() {
     setTimeout(() => {
-      this.controls['role'].setValue(this.roles.selectRole);
-      this.controls['course'].setValue(this.courses.selectCourse);
-      this.controls['startDate'].setValue(
-        new Date().toISOString().split('T')[0]
-      );
+      this.controls['secondCourse'].setValue(this.courses.selectCourse);
+      this.controls['firstCourse'].setValue(this.courses.selectCourse);
     }, 0);
-  }
-
-  isDefaultRole(role: Roles): boolean {
-    return role === Roles.selectRole;
   }
 
   isDefaultCourse(course: Courses): boolean {

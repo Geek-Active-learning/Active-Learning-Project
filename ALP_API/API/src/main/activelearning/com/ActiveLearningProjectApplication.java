@@ -14,17 +14,4 @@ public class ActiveLearningProjectApplication {
         SpringApplication.run(ActiveLearningProjectApplication.class, args);
     }
 
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//
-//                registry.addMapping("/api/**")
-//                        .allowedOrigins("http://localhost:4200/")
-//                        .allowedMethods("PUT", "DELETE","POST")
-//                        .allowCredentials(false).maxAge(3600);
-//            }
-//        };
-//    }
 }

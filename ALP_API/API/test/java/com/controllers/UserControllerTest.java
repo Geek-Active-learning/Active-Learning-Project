@@ -4,16 +4,14 @@ import activelearning.com.API.controllers.UserController;
 import activelearning.com.BL.entities.User;
 import activelearning.com.DL.services.UserService;
 import org.junit.jupiter.api.Test;
-import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.server.ResponseStatusException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import java.lang.reflect.Array;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = {UserService.class, PasswordEncoder.class})
+@SpringBootTest(classes = {UserService.class})
 @ActiveProfiles("test")
 public class UserControllerTest {
 
@@ -31,7 +29,7 @@ public class UserControllerTest {
     UserService userService;
     private final UserController mockUserController;
     private final UserService mockedUserService;
-    private final PasswordEncoder mockPasswordEncoder;
+//    private final PasswordEncoder mockPasswordEncoder;
 
     private final User userBuilds =
             User.builder()
@@ -47,7 +45,7 @@ public class UserControllerTest {
 
     UserControllerTest() {
         this.mockedUserService = mock(UserService.class);
-        this.mockPasswordEncoder = mock(PasswordEncoder.class);
+//        this.mockPasswordEncoder = mock(PasswordEncoder.class);
         this.mockUserController = new UserController(mockedUserService);
     }
 

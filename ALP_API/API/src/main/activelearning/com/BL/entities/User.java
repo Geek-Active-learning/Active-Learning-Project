@@ -41,4 +41,13 @@ public class User {
     private Date dob;
     private String password;
     private Date startDate;
+    private  Role role = Role.TRAINEE;
+    private  boolean active = true;
+    @ManyToOne
+    @JoinColumn(name = "first_course_id")
+    private Course firstChoice;
+
+    @ManyToOne
+    @JoinColumn(name = "second_course_id")
+    private Course secondChoice;
 }
